@@ -14,8 +14,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="Descrição">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		
-		<script>
+	
+<script>
 // Função para obter parâmetros da URL
 function getURLParameter(name) {
  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
@@ -43,11 +43,11 @@ if (localStorage.getItem('userRedirected') === 'true') {
  window.location.href = "https://google.com";
 } else if (localStorage.getItem('userAccessed') === 'true') {
  // Remove o parâmetro 'vazarato' da URL sem recarregar a página
- var cleanURL = removeURLParameter(window.location.href, 'bestpicks');
+ var cleanURL = removeURLParameter(window.location.href, 'vazarato');
  history.replaceState(null, null, cleanURL);
 } else {
  // Verifica se a página foi acessada com o parâmetro correto
- if (getURLParameter('bestpicks') !== 'true') {
+ if (getURLParameter('vazarato') !== 'true') {
   // Armazena no localStorage que o usuário foi redirecionado
   localStorage.setItem('userRedirected', 'true');
   // Redireciona o usuário para outra página (por exemplo, página inicial)
@@ -55,8 +55,8 @@ if (localStorage.getItem('userRedirected') === 'true') {
  } else {
   // Armazena no localStorage que o usuário acessou a página corretamente
   localStorage.setItem('userAccessed', 'true');
-  // Remove o parâmetro 'bestpicks' da URL sem recarregar a página
-  var cleanURL = removeURLParameter(window.location.href, 'bestpicks');
+  // Remove o parâmetro 'vazarato' da URL sem recarregar a página
+  var cleanURL = removeURLParameter(window.location.href, 'vazarato');
   history.replaceState(null, null, cleanURL);
  }
 }

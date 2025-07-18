@@ -1,0 +1,7 @@
+.elementor-11 .elementor-element.elementor-element-b8535cf{--display:flex;--flex-direction:column;--container-widget-width:100%;--container-widget-height:initial;--container-widget-flex-grow:0;--container-widget-align-self:initial;--flex-wrap-mobile:wrap;}.elementor-11 .elementor-element.elementor-element-509de78{--display:flex;--min-height:100px;border-style:none;--border-style:none;}.elementor-11 .elementor-element.elementor-element-f1cff5a{--display:flex;}@media(max-width:767px){.elementor-11 .elementor-element.elementor-element-509de78{--width:500px;--min-height:0px;--margin-top:11px;--margin-bottom:11px;--margin-left:11px;--margin-right:11px;--padding-top:-10px;--padding-bottom:-10px;--padding-left:-10px;--padding-right:-10px;}}/* Start custom CSS for container, class: .elementor-element-509de78 */@media(max-width: 767px) {
+  .elementor-11 .elementor-element.elementor-element-509de78 {
+    width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}/* End custom CSS */

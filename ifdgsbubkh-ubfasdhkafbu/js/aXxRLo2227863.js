@@ -303,7 +303,7 @@
           (function() {
             try {
               var vturbvideoId = "67b9068ad984d3618d71f29f";
-              var SECONDS_TO_DISPLAY = 2879;
+              var SECONDS_TO_DISPLAY = 2679;
               var attempts = 0;
               var elsDisplayed = false;
               var alreadyDisplayedKey = 'alreadyElsDisplayed2879';

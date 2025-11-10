@@ -94,15 +94,26 @@
 									<div class="elementor-button-wrapper">
 						<span class="elementor-button-content-wrapper">
 									<!-- HOTMART - Sales Funnel Widget -->
-<!--- sales funnel container --->
-<div id="hotmart-sales-funnel"></div>
+<div id="hotmart-sales-funnel" style="display:none;"></div>
 
-<!--- script load and setup --->
 <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+
 <script>
-checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+
+// tempo em segundos (3:39 = 219)
+const tempoDelay = 219 * 1000; 
+
+setTimeout(() => {
+   // monta o widget
+   checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+
+   // mostra
+   document.getElementById('hotmart-sales-funnel').style.display = "block";
+}, tempoDelay);
+
 </script>
 <!-- HOTMART - Sales Funnel Widget -->
+
 					</span>
 					</a>
 				</div>

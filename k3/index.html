@@ -188,7 +188,44 @@ src="https://www.facebook.com/tr?id=9279680138744798&ev=PageView&noscript=1"
 				</div>
 				<div class="elementor-element elementor-element-ce1e911 elementor-widget elementor-widget-text-editor" data-id="ce1e911" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
-									Updated 30 minutes ago  10/17/2025								</div>
+									<div id="updateInfo"></div>
+
+<script>
+function mostrarDataAtual() {
+    const agora = new Date();
+
+    // Formato americano: MM/DD/YYYY
+    const dataAmericana = agora.toLocaleDateString("en-US");
+
+    document.getElementById("updateInfo").innerText =
+        `Updated 30 minutes ago — ${dataAmericana}`;
+}
+
+function agendarAtualizacaoDiaria() {
+    const agora = new Date();
+    
+    // Próxima meia-noite local
+    const proximaMeiaNoite = new Date(
+        agora.getFullYear(),
+        agora.getMonth(),
+        agora.getDate() + 1,
+        0, 0, 0
+    );
+
+    const tempoRestante = proximaMeiaNoite - agora;
+
+    setTimeout(() => {
+        mostrarDataAtual();        // atualiza data
+        agendarAtualizacaoDiaria(); // agenda próxima
+    }, tempoRestante);
+}
+
+// Mostra imediatamente
+mostrarDataAtual();
+
+// Atualiza automaticamente 1 vez por dia
+agendarAtualizacaoDiaria();
+</script>								</div>
 				</div>
 				<div class="elementor-element elementor-element-58dbd28 elementor-widget-mobile__width-inherit elementor-widget elementor-widget-html" data-id="58dbd28" data-element_type="widget" data-widget_type="html.default">
 				<div class="elementor-widget-container">

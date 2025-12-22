@@ -12,7 +12,6 @@
 img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 /*# sourceURL=wp-img-auto-sizes-contain-inline-css */
 </style>
-
 <style id="wp-emoji-styles-inline-css">
 
 	img.wp-smiley, img.emoji {
@@ -195,7 +194,52 @@ a{text-decoration-thickness:1px!important;text-underline-offset:.1em}:where(.wp-
     a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
     document.head.appendChild(a);
   </script>
-  
+  <script>
+// Função para obter parâmetros da URL
+function getURLParameter(name) {
+ return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+}
+
+// Função para remover um parâmetro específico da URL
+function removeURLParameter(url, parameter) {
+ var urlparts = url.split('?');
+ if (urlparts.length >= 2) {
+  var prefix = encodeURIComponent(parameter) + '=';
+  var pars = urlparts[1].split(/[&;]/g);
+  for (var i = pars.length; i-- > 0;) {
+   if (pars[i].lastIndexOf(prefix, 0) !== -1) {
+    pars.splice(i, 1);
+   }
+  }
+  return urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : '');
+ }
+ return url;
+}
+
+// Verifica se o usuário já foi redirecionado anteriormente
+if (localStorage.getItem('userRedirected') === 'true') {
+ // Redireciona o usuário para outra página (por exemplo, página inicial)
+ window.location.href = "https://www.amazon.com/Os-Amigos-Mente-Portuguese-Brasil/dp/8584390146/ref=sr_1_3?crid=2PWIVJYMFBDGK&dib=eyJ2IjoiMSJ9.ZTR8rMCUFMCYvb-r_oKMgqyJ9JmEXeR3a2qKTHHyiyo.MRxva1s4J0iKEKIXkeXxu1q32ltNuWW-Bk4miPJiLMg&dib_tag=se&keywords=jogo+para+mente&qid=1766429650&sprefix=jogo+para+men%2Caps%2C282&sr=8-3";
+} else if (localStorage.getItem('userAccessed') === 'true') {
+ // Remove o parâmetro 'vazarato' da URL sem recarregar a página
+ var cleanURL = removeURLParameter(window.location.href, 'vazarato');
+ history.replaceState(null, null, cleanURL);
+} else {
+ // Verifica se a página foi acessada com o parâmetro correto
+ if (getURLParameter('vazarato') !== 'true') {
+  // Armazena no localStorage que o usuário foi redirecionado
+  localStorage.setItem('userRedirected', 'true');
+  // Redireciona o usuário para outra página (por exemplo, página inicial)
+  window.location.href = "https://www.amazon.com/Os-Amigos-Mente-Portuguese-Brasil/dp/8584390146/ref=sr_1_3?crid=2PWIVJYMFBDGK&dib=eyJ2IjoiMSJ9.ZTR8rMCUFMCYvb-r_oKMgqyJ9JmEXeR3a2qKTHHyiyo.MRxva1s4J0iKEKIXkeXxu1q32ltNuWW-Bk4miPJiLMg&dib_tag=se&keywords=jogo+para+mente&qid=1766429650&sprefix=jogo+para+men%2Caps%2C282&sr=8-3";
+ } else {
+  // Armazena no localStorage que o usuário acessou a página corretamente
+  localStorage.setItem('userAccessed', 'true');
+  // Remove o parâmetro 'vazarato' da URL sem recarregar a página
+  var cleanURL = removeURLParameter(window.location.href, 'vazarato');
+  history.replaceState(null, null, cleanURL);
+ }
+}
+</script>
   				</div>
 					</div>
 				</div>

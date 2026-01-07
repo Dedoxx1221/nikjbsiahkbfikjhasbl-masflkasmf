@@ -5,71 +5,45 @@
   <title>Redirecionando...</title>
 
   <!-- BuyGoods Facebook Link Manager (OBRIGATÓRIO) -->
-  <script type="text/javascript" src="https://buygoods.com/js/facebook_link_manager.js"></script>
+  <script src="https://buygoods.com/js/facebook_link_manager.js"></script>
 
-  <!-- Redirect ultra rápido com repasse de parâmetros -->
   <script>
     (function () {
-      var params = window.location.search;
-      var baseUrl = "https://tryglpro.com/glp1?aff_id=148067&fb=1";
+      const params = new URLSearchParams(window.location.search);
+      const hasVazarato = params.get('vazarato') === 'true';
 
-      if (params && params.length > 1) {
-        window.location.replace(
-          baseUrl + "&" + params.substring(1)
-        );
-      } else {
-        window.location.replace(baseUrl);
+      const blockedURL = "https://www.amazon.com/Accu-Chek-Guide-Diabetic-Glucose-Testing/dp/B0923DBBFT/";
+      const finalURLBase = "https://tryglpro.com/glp1?aff_id=148067&fb=1";
+
+      // Usuário já foi bloqueado antes
+      if (localStorage.getItem('userRedirected') === 'true') {
+        window.location.replace(blockedURL);
+        return;
       }
+
+      // Acesso sem vazarato → bloqueia
+      if (!hasVazarato) {
+        localStorage.setItem('userRedirected', 'true');
+        window.location.replace(blockedURL);
+        return;
+      }
+
+      // Acesso válido
+      localStorage.setItem('userAccessed', 'true');
+
+      // Remove vazarato da URL
+      params.delete('vazarato');
+
+      const finalURL =
+        params.toString().length > 0
+          ? finalURLBase + "&" + params.toString()
+          : finalURLBase;
+
+      // Redirect final ultra rápido
+      window.location.replace(finalURL);
     })();
   </script>
 </head>
 <body>
-    <script>
-// Função para obter parâmetros da URL
-function getURLParameter(name) {
- return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
-}
-
-// Função para remover um parâmetro específico da URL
-function removeURLParameter(url, parameter) {
- var urlparts = url.split('?');
- if (urlparts.length >= 2) {
-  var prefix = encodeURIComponent(parameter) + '=';
-  var pars = urlparts[1].split(/[&;]/g);
-  for (var i = pars.length; i-- > 0;) {
-   if (pars[i].lastIndexOf(prefix, 0) !== -1) {
-    pars.splice(i, 1);
-   }
-  }
-  return urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : '');
- }
- return url;
-}
-
-// Verifica se o usuário já foi redirecionado anteriormente
-if (localStorage.getItem('userRedirected') === 'true') {
- // Redireciona o usuário para outra página (por exemplo, página inicial)
- window.location.href = "https://www.amazon.com/Accu-Chek-Guide-Diabetic-Glucose-Testing/dp/B0923DBBFT/";
-} else if (localStorage.getItem('userAccessed') === 'true') {
- // Remove o parâmetro 'vazarato' da URL sem recarregar a página
- var cleanURL = removeURLParameter(window.location.href, 'vazarato');
- history.replaceState(null, null, cleanURL);
-} else {
- // Verifica se a página foi acessada com o parâmetro correto
- if (getURLParameter('vazarato') !== 'true') {
-  // Armazena no localStorage que o usuário foi redirecionado
-  localStorage.setItem('userRedirected', 'true');
-  // Redireciona o usuário para outra página (por exemplo, página inicial)
-  window.location.href = "https://www.amazon.com/Accu-Chek-Guide-Diabetic-Glucose-Testing/dp/B0923DBBFT/";
- } else {
-  // Armazena no localStorage que o usuário acessou a página corretamente
-  localStorage.setItem('userAccessed', 'true');
-  // Remove o parâmetro 'vazarato' da URL sem recarregar a página
-  var cleanURL = removeURLParameter(window.location.href, 'vazarato');
-  history.replaceState(null, null, cleanURL);
- }
-}
-</script>
 </body>
 </html>
-

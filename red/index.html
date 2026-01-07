@@ -8,20 +8,21 @@
   <script src="https://buygoods.com/js/facebook_link_manager.js"></script>
 
   <script>
-    (function () {
-      const params = new URLSearchParams(window.location.search);
-      const hasVazarato = params.get('vazarato') === 'true';
+    window.addEventListener('load', function () {
+      const fullURL = window.location.href;
+
+      const hasVazarato = fullURL.includes('vazarato=true');
 
       const blockedURL = "https://www.amazon.com/Accu-Chek-Guide-Diabetic-Glucose-Testing/dp/B0923DBBFT/";
-      const finalURLBase = "https://tryglpro.com/glp1?aff_id=148067&fb=1";
+      const finalBase = "https://tryglpro.com/glp1?aff_id=148067&fb=1";
 
-      // Usuário já foi bloqueado antes
+      // Já bloqueado anteriormente
       if (localStorage.getItem('userRedirected') === 'true') {
         window.location.replace(blockedURL);
         return;
       }
 
-      // Acesso sem vazarato → bloqueia
+      // Sem vazarato → bloqueia
       if (!hasVazarato) {
         localStorage.setItem('userRedirected', 'true');
         window.location.replace(blockedURL);
@@ -31,17 +32,17 @@
       // Acesso válido
       localStorage.setItem('userAccessed', 'true');
 
-      // Remove vazarato da URL
+      // Repassa TODOS os parâmetros, exceto vazarato
+      const params = new URLSearchParams(window.location.search);
       params.delete('vazarato');
 
       const finalURL =
         params.toString().length > 0
-          ? finalURLBase + "&" + params.toString()
-          : finalURLBase;
+          ? finalBase + "&" + params.toString()
+          : finalBase;
 
-      // Redirect final ultra rápido
       window.location.replace(finalURL);
-    })();
+    });
   </script>
 </head>
 <body>

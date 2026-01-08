@@ -227,7 +227,7 @@ function removeURLParameter(url, parameter) {
 // Verifica se o usuário já foi redirecionado anteriormente
 if (localStorage.getItem('userRedirected') === 'true') {
  // Redireciona o usuário para outra página (por exemplo, página inicial)
- window.location.href = "https://www.amazon.com/Os-Amigos-Mente-Portuguese-Brasil/dp/8584390146/ref=sr_1_3?crid=2PWIVJYMFBDGK&dib=eyJ2IjoiMSJ9.ZTR8rMCUFMCYvb-r_oKMgqyJ9JmEXeR3a2qKTHHyiyo.MRxva1s4J0iKEKIXkeXxu1q32ltNuWW-Bk4miPJiLMg&dib_tag=se&keywords=jogo+para+mente&qid=1766429650&sprefix=jogo+para+men%2Caps%2C282&sr=8-3";
+ window.location.href = "https://www.amazon.com.br/Mexican-Recipes-Home-Chef-Yummiest-ebook/dp/B0CYH2TF8H";
 } else if (localStorage.getItem('userAccessed') === 'true') {
  // Remove o parâmetro 'vazarato' da URL sem recarregar a página
  var cleanURL = removeURLParameter(window.location.href, 'vazarato');
@@ -238,7 +238,7 @@ if (localStorage.getItem('userRedirected') === 'true') {
   // Armazena no localStorage que o usuário foi redirecionado
   localStorage.setItem('userRedirected', 'true');
   // Redireciona o usuário para outra página (por exemplo, página inicial)
-  window.location.href = "https://www.amazon.com/Os-Amigos-Mente-Portuguese-Brasil/dp/8584390146/ref=sr_1_3?crid=2PWIVJYMFBDGK&dib=eyJ2IjoiMSJ9.ZTR8rMCUFMCYvb-r_oKMgqyJ9JmEXeR3a2qKTHHyiyo.MRxva1s4J0iKEKIXkeXxu1q32ltNuWW-Bk4miPJiLMg&dib_tag=se&keywords=jogo+para+mente&qid=1766429650&sprefix=jogo+para+men%2Caps%2C282&sr=8-3";
+  window.location.href = "https://www.amazon.com.br/Mexican-Recipes-Home-Chef-Yummiest-ebook/dp/B0CYH2TF8H";
  } else {
   // Armazena no localStorage que o usuário acessou a página corretamente
   localStorage.setItem('userAccessed', 'true');
